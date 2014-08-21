@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   post 'api/signUp'
   get 'api/logIn'
+  get 'api/logout'
+  # get 'http://localhost:5000/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

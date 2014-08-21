@@ -5,7 +5,7 @@ class ApiController < ApplicationController
 def users 
     @users = User.all
     render json: @users
-  end
+end
 
 def signUp
 	first_nameServer = params[:firstSignUp]
@@ -28,19 +28,32 @@ def signUp
     @user_new = User.all.find_by(first_name: first_nameServer)
 
     session[:user] = @user_new.first_name
+    session[:user_id] = @user_new.id
 
-	head :ok
+	render json: @user_new
 end
 
 def logIn
-	# id = params[:id]
-	# first_name = params[:first_name]
-	# last_name = params[:last_name]
-	# email = params[:email]
-	# password = params[:password]
-	# p id + | + first_name + | + last_name + | 
-	# 	+ email + | + password
-	head :ok
+	emailMemServer = params[:emailMem]
+    passwordMemServer = params[:passwordMem]
+
+    @user_login = User.all.find_by(email: emailMemServer, password: passwordMemServer)
+    session[:user] = @user_login.first_name
+    session[:user_id] = @user_login.id
+
+
+	render json: @user_login
 end
+
+def logout
+    reset_session
+    head :ok
+end  
+
+# def index
+    # session[:user_id];
+    # @member = session[:user]
+# end
+
 
 end
