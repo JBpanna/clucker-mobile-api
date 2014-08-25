@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+	has_many :clucks
+
+	# has_many :clucks, inverse_of: :user
 
 	validates :password, presence: true
 
