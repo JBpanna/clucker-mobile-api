@@ -24,7 +24,7 @@ def signUp
             email: emailServer, password: passwordServer}
     p testlogin
 
-		person=User.create(
+		person=User.new(
  	      	first_name: first_nameServer,
  	      	last_name: last_nameServer,
  	      	email: emailServer,
@@ -37,8 +37,9 @@ def signUp
     session[:user] = @user_new
     session[:user_id] = @user_new.id
     @cluck_id = @user_new.id
+    SimpleMailer.welcome_email(person).deliver
 
-	render json: @user_new
+	render json: person
 end
 
 def logIn
@@ -49,6 +50,7 @@ def logIn
     session[:user] = @user_login
     session[:user_id] = @user_login.id
     @cluck_id = @user_login.id
+
 
 	render json: @user_login
 end
