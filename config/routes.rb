@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'api/logIn'
   get 'api/logout'
   post 'api/saveCluck'
+  get 'api/getCluck'
   
   # get 'http://localhost:5000/index'
 

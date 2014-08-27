@@ -90,6 +90,18 @@ def saveCluck
 
 end
 
+def getCluck
+    api_key = params[:apiKey]
+   
+   @show_cluck = Cluck.all.find_by(api_key: api_key)
+   if (@show_cluck == nil)
+        return
+   end     
+
+
+    render json: @show_cluck
+end
+
 def logout
     reset_session
     head :ok
